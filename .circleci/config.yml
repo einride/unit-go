@@ -1,0 +1,30 @@
+version: 2
+jobs:
+
+  build:
+    docker:
+        - image: circleci/golang:1.11-stretch-node
+    working_directory: /go/src/github.com/einride/unit
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: make
+      - restore_cache:
+          keys:
+            - build-cache-{{ checksum ".git/modules/build/HEAD" }}
+      - restore_cache:
+          keys:
+            - vendor-cache-{{ checksum "Gopkg.lock" }}
+      - run: make
+      - save_cache:
+          key: build-cache-{{ checksum ".git/modules/build/HEAD" }}
+          paths: [build]
+      - save_cache:
+          key: vendor-cache-{{ checksum "Gopkg.lock" }}
+          paths: [vendor]
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build

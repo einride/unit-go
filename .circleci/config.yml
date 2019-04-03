@@ -3,7 +3,7 @@ jobs:
 
   build:
     docker:
-        - image: circleci/golang:1.11-stretch-node
+        - image: circleci/golang:1.12-stretch-node
     working_directory: /go/src/github.com/einride/unit
     steps:
       - checkout

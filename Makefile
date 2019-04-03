@@ -51,7 +51,7 @@ go-generate: $(STRINGER) $(WIRE)
 # go-test: run Go test suite
 .PHONY: go-test
 go-test:
-	GOCACHE=off go test $(GO_BUILD_FLAGS) -race -cover ./...
+	go test $(GO_BUILD_FLAGS) -count 1 -race -cover ./...
 
 # markdown-lint: lint Markdown files with markdownlint
 .PHONY: markdown-lint

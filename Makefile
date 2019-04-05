@@ -3,11 +3,14 @@
 all: \
 	circleci-config-validate \
 	markdown-lint \
+	mod-tidy \
 	dep-ensure \
 	go-generate \
 	go-lint \
 	go-review \
-	go-test
+	go-test \
+	git-verify-submodules \
+	git-verify-nodiff
 
 # clean: remove generated build files
 .PHONY: clean
@@ -26,6 +29,10 @@ build:
 include build/rules.mk
 build/rules.mk: build
 	@# Included in submodule: build
+
+.PHONY: mod-tidy
+mod-tidy:
+	go mod tidy
 
 # dep-ensure: update Go dependencies
 .PHONY: dep-ensure

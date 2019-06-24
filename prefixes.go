@@ -46,6 +46,11 @@ func prefixString(p float64) string {
 }
 
 func formatWithPrefixAndSymbol(v float64, symbol string) string {
+	var sign string
+	if v < 0 {
+		sign = "-"
+		v *= -1
+	}
 	prefix := getPrefix(v)
-	return strconv.FormatFloat(v/prefix, 'f', -1, 64) + prefixString(prefix) + symbol
+	return sign + strconv.FormatFloat(v/prefix, 'f', -1, 64) + prefixString(prefix) + symbol
 }

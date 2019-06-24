@@ -12,6 +12,6 @@ func (d Distance) Metres() float64 {
 	return float64(d)
 }
 
-func (d Distance) Miles() float64 {
-	return float64(d) * milesConstant / (Kilo * Metre).Metres()
+func (d Distance) Get(as Distance) float64 {
+	return float64(d) / float64(as)
 }

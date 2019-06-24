@@ -7,9 +7,9 @@ import (
 )
 
 func TestSpeed_Kph(t *testing.T) {
-	require.Equal(t, 3.6, MetrePerSecond.KiloMetresPerHour())
+	require.InDelta(t, 3.6, MetrePerSecond.Get(KiloMetrePerHour), 0.0000000000001)
 }
 
 func TestSpeed_UnitConversionMPSxKPH(t *testing.T) {
-	require.Equal(t, float64(MetrePerSecond), MetrePerSecond.KiloMetresPerHour()*float64(KiloMetrePerHour))
+	require.Equal(t, float64(MetrePerSecond), MetrePerSecond.Get(KiloMetrePerHour)*float64(KiloMetrePerHour))
 }

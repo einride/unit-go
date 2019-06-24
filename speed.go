@@ -7,10 +7,10 @@ const (
 	KiloMetrePerHour       = MetrePerSecond / 3.6
 )
 
-func (s Speed) MetersPerSecond() float64 {
+func (s Speed) MetresPerSecond() float64 {
 	return float64(s)
 }
 
-func (s Speed) KiloMetresPerHour() float64 {
-	return float64(s) * 3.6
+func (s Speed) Get(as Speed) float64 {
+	return float64(s) / float64(as)
 }

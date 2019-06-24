@@ -4,7 +4,6 @@ all: \
 	circleci-config-validate \
 	markdown-lint \
 	mod-tidy \
-	dep-ensure \
 	go-generate \
 	go-lint \
 	go-review \
@@ -33,11 +32,6 @@ build/rules.mk: build
 .PHONY: mod-tidy
 mod-tidy:
 	go mod tidy
-
-# dep-ensure: update Go dependencies
-.PHONY: dep-ensure
-dep-ensure: $(DEP)
-	$(DEP) ensure -v
 
 .PHONY: go-lint
 go-lint: $(GOLANGCI_LINT)
@@ -79,4 +73,3 @@ circleci-config-validate: $(CIRCLECI)
 .PHONY: go-review
 go-review: $(GOREVIEW)
 	$(GOREVIEW) -c 1 ./...
-

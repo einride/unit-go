@@ -7,7 +7,6 @@ import (
 )
 
 func TestDistance(t *testing.T) {
-	require.InDelta(t, 1000/milesConstant, (1 * Mile).Metres(), 0.0000000001)
 	require.Equal(t, 1000., (Kilo * Metre).Metres())
 	require.Equal(t, 1., Metre.Metres())
 }

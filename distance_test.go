@@ -6,17 +6,22 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestDistance(t *testing.T) {
-	require.Equal(t, 1000., (Kilo * Metre).Metres())
-	require.Equal(t, 1., Metre.Metres())
-}
-
-func TestDistance_KiloMetresPerHour(t *testing.T) {
-	require.Equal(t, 1., (Kilo * Metre).Get(Kilo*Metre))
-}
-
-func TestDistance_Mile(t *testing.T) {
-	require.InDelta(t, 1., Mile.Get(Mile), 0.0000000000001)
+func TestDistance_Get(t *testing.T) {
+	for _, tt := range []struct {
+		msg      string
+		d        Distance
+		as       Distance
+		expected float64
+	}{
+		{msg: "km as mile", d: Kilo * Metre, as: Mile, expected: 0.621371192},
+		{msg: "mile as km", d: Mile, as: Kilo * Metre, expected: 1.609344000614692},
+		{msg: "km as m", d: Kilo * Metre, as: Metre, expected: 1000},
+	} {
+		tt := tt
+		t.Run(tt.msg, func(t *testing.T) {
+			require.Equal(t, tt.expected, tt.d.Get(tt.as))
+		})
+	}
 }
 
 func TestDistance_String(t *testing.T) {

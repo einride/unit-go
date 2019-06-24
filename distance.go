@@ -5,8 +5,7 @@ type Distance float64
 const (
 	milesConstant          = 0.621371192
 	Metre         Distance = 1
-	KiloMetre              = Metre * 1000
-	Mile                   = 1 / milesConstant * KiloMetre
+	Mile                   = 1 / milesConstant * Kilo * Metre
 )
 
 func (d Distance) Metres() float64 {
@@ -14,9 +13,5 @@ func (d Distance) Metres() float64 {
 }
 
 func (d Distance) Miles() float64 {
-	return float64(d) * milesConstant / KiloMetre.Metres()
-}
-
-func (d Distance) KiloMetres() float64 {
-	return float64(d) / 1000
+	return float64(d) * milesConstant / (Kilo * Metre).Metres()
 }

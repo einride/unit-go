@@ -9,10 +9,10 @@ const (
 	Degree       = Radian / 180 * math.Pi
 )
 
-func (a Angle) Degrees() float64 {
-	return float64(a) * 180 / math.Pi
-}
-
 func (a Angle) Radians() float64 {
 	return float64(a)
+}
+
+func (a Angle) Get(as Angle) float64 {
+	return float64(a) / float64(as)
 }

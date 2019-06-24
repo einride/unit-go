@@ -11,6 +11,8 @@ all: \
 	git-verify-submodules \
 	git-verify-nodiff
 
+export GO111MODULE := on
+
 # clean: remove generated build files
 .PHONY: clean
 clean:

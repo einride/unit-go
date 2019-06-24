@@ -16,12 +16,7 @@ export GO111MODULE := on
 # clean: remove generated build files
 .PHONY: clean
 clean:
-	rm -rf \
-		internal/common/funnel \
-		vendor \
-		build \
-		test/mocks
-	find -name '*wire_gen.go' -exec rm {} \+
+	rm -rf build
 
 .PHONY: build
 build:

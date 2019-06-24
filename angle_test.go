@@ -14,3 +14,7 @@ func TestAngle_FromDegrees(t *testing.T) {
 func TestAngle_ToDegrees(t *testing.T) {
 	require.Equal(t, 180.0, (Radian * math.Pi).Get(Degree))
 }
+
+func TestAngle_String(t *testing.T) {
+	require.Equal(t, "360°", (2 * math.Pi * Radian).String())
+}

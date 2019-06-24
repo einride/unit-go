@@ -1,6 +1,11 @@
 package unit
 
-import "math"
+import (
+	"math"
+	"strconv"
+)
+
+const degreeSymbol = "°"
 
 type Angle float64
 
@@ -15,4 +20,8 @@ func (a Angle) Radians() float64 {
 
 func (a Angle) Get(as Angle) float64 {
 	return float64(a) / float64(as)
+}
+
+func (a Angle) String() string {
+	return strconv.FormatFloat(a.Get(Degree), 'f', -1, 64) + degreeSymbol
 }

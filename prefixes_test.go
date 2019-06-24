@@ -25,6 +25,9 @@ func TestFormatWithPrefixAndSymbol(t *testing.T) {
 		{value: 0.000001, symbol: "m", expected: "1µm"},
 		{value: 0.000000999, symbol: "m", expected: "999nm"},
 		{value: 0.000000001, symbol: "m", expected: "1nm"},
+		{value: -0.000000001, symbol: "m", expected: "-1nm"},
+		{value: -0.000000999, symbol: "m", expected: "-999nm"},
+		{value: -0.001, symbol: "m", expected: "-1mm"},
 	} {
 		tt := tt
 		t.Run(tt.expected, func(t *testing.T) {

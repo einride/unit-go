@@ -3,9 +3,8 @@ package unit
 type Distance float64
 
 const (
-	milesConstant          = 0.621371192
-	Metre         Distance = 1
-	Mile                   = 1 / milesConstant * Kilo * Metre
+	Metre Distance = 1
+	Mile           = 1 / 0.621371192 * Kilo * Metre
 )
 
 func (d Distance) Metres() float64 {

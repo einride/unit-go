@@ -31,7 +31,8 @@ go-mod-tidy:
 
 .PHONY: go-lint
 go-lint: $(GOLANGCI_LINT)
-	$(GOLANGCI_LINT) run --enable-all
+	# dupl: Disabled due to duplication between units (TODO: code-generate)
+	$(GOLANGCI_LINT) run --enable-all --disable dupl
 
 # go-test: run Go test suite
 .PHONY: go-test

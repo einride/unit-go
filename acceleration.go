@@ -1,5 +1,7 @@
 package unit
 
+import "golang.org/x/xerrors"
+
 const metrePerSecondSquaredSymbol = "m/s²"
 
 type Acceleration float64
@@ -15,5 +17,16 @@ func (a Acceleration) Get(as Acceleration) float64 {
 }
 
 func (a Acceleration) String() string {
-	return formatWithPrefixAndSymbol(float64(a), metrePerSecondSquaredSymbol)
+	return format(float64(a), metrePerSecondSquaredSymbol)
+}
+
+func (a *Acceleration) UnmarshalString(str string) error {
+	parsed, err := parse(str, map[string]float64{
+		metrePerSecondSquaredSymbol: float64(MetrePerSecondSquared),
+	})
+	if err != nil {
+		return xerrors.Errorf("unmarshal acceleration: %w", err)
+	}
+	*a = Acceleration(parsed)
+	return nil
 }

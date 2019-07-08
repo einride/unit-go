@@ -16,16 +16,23 @@ func TestSpeed_UnitConversionMPSxKPH(t *testing.T) {
 
 func TestSpeed_String(t *testing.T) {
 	for _, tt := range []struct {
-		s        Speed
-		expected string
+		s   Speed
+		str string
 	}{
-		{s: 0, expected: "0m/s"},
-		{s: MetrePerSecond, expected: "1m/s"},
-		{s: 2.3 * Centi * MetrePerSecond, expected: "2.3cm/s"},
+		{s: 0, str: "0m/s"},
+		{s: MetrePerSecond, str: "1m/s"},
+		{s: 2.3 * Centi * MetrePerSecond, str: "2.3cm/s"},
 	} {
 		tt := tt
-		t.Run(tt.expected, func(t *testing.T) {
-			require.Equal(t, tt.expected, tt.s.String())
+		t.Run(tt.str, func(t *testing.T) {
+			t.Run("marshal", func(t *testing.T) {
+				require.Equal(t, tt.str, tt.s.String())
+			})
+			t.Run("unmarshal", func(t *testing.T) {
+				var s Speed
+				require.NoError(t, s.UnmarshalString(tt.str))
+				require.Equal(t, tt.s, s)
+			})
 		})
 	}
 }

@@ -3,9 +3,14 @@ package unit
 import (
 	"math"
 	"strconv"
+
+	"golang.org/x/xerrors"
 )
 
-const degreeSymbol = "°"
+const (
+	radianSymbol = "rad"
+	degreeSymbol = "°"
+)
 
 type Angle float64
 
@@ -24,4 +29,16 @@ func (a Angle) Get(as Angle) float64 {
 
 func (a Angle) String() string {
 	return strconv.FormatFloat(a.Get(Degree), 'f', -1, 64) + degreeSymbol
+}
+
+func (a *Angle) UnmarshalString(str string) error {
+	parsed, err := parse(str, map[string]float64{
+		radianSymbol: float64(Radian),
+		degreeSymbol: float64(Degree),
+	})
+	if err != nil {
+		return xerrors.Errorf("unmarshal angle: %w", err)
+	}
+	*a = Angle(parsed)
+	return nil
 }

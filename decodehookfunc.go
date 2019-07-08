@@ -20,6 +20,12 @@ func DecodeHookFunc(from reflect.Type, to reflect.Type, data interface{}) (inter
 			return nil, err
 		}
 		return a, nil
+	case reflect.TypeOf(AngularSpeed(0)):
+		var a AngularSpeed
+		if err := a.UnmarshalString(data.(string)); err != nil {
+			return nil, err
+		}
+		return a, nil
 	case reflect.TypeOf(Distance(0)):
 		var d Distance
 		if err := d.UnmarshalString(data.(string)); err != nil {

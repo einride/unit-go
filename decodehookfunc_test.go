@@ -47,6 +47,21 @@ func TestDecodeHookFunc(t *testing.T) {
 		},
 
 		{
+			msg:    "angular speed",
+			from:   reflect.TypeOf(""),
+			to:     reflect.TypeOf(AngularSpeed(0)),
+			data:   "5rad/s",
+			result: 5 * RadianPerSecond,
+		},
+		{
+			msg:  "angular speed error",
+			from: reflect.TypeOf(""),
+			to:   reflect.TypeOf(AngularSpeed(0)),
+			data: "5",
+			err:  "unmarshal angular speed: parse '5': unknown unit",
+		},
+
+		{
 			msg:    "distance",
 			from:   reflect.TypeOf(""),
 			to:     reflect.TypeOf(Distance(0)),

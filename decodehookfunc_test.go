@@ -77,6 +77,21 @@ func TestDecodeHookFunc(t *testing.T) {
 		},
 
 		{
+			msg:    "jerk",
+			from:   reflect.TypeOf(""),
+			to:     reflect.TypeOf(Jerk(0)),
+			data:   "5m/s³",
+			result: 5 * MetrePerSecondCubed,
+		},
+		{
+			msg:  "jerk error",
+			from: reflect.TypeOf(""),
+			to:   reflect.TypeOf(Jerk(0)),
+			data: "5",
+			err:  "unmarshal jerk: parse '5': unknown unit",
+		},
+
+		{
 			msg:    "mass",
 			from:   reflect.TypeOf(""),
 			to:     reflect.TypeOf(Mass(0)),

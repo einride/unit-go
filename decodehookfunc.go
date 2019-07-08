@@ -32,6 +32,12 @@ func DecodeHookFunc(from reflect.Type, to reflect.Type, data interface{}) (inter
 			return nil, err
 		}
 		return f, nil
+	case reflect.TypeOf(Jerk(0)):
+		var j Jerk
+		if err := j.UnmarshalString(data.(string)); err != nil {
+			return nil, err
+		}
+		return j, nil
 	case reflect.TypeOf(Mass(0)):
 		var m Mass
 		if err := m.UnmarshalString(data.(string)); err != nil {

@@ -2,6 +2,7 @@ package unit
 
 import (
 	"testing"
+	"testing/quick"
 
 	"github.com/stretchr/testify/require"
 )
@@ -66,4 +67,22 @@ func TestFormat_Errors(t *testing.T) {
 			require.Equal(t, tt.err, err.Error())
 		})
 	}
+}
+
+func TestProperty_ParseFormat(t *testing.T) {
+	const (
+		delta = 1e-9
+		limit = 1e100 // prefix division causes precision loss for "big" values
+	)
+	f := func(value float64) bool {
+		if value > limit || value < -limit {
+			return true
+		}
+		formatted := format(value, "m")
+		parsed, err := parse(formatted, map[string]float64{"m": 1})
+		require.NoError(t, err)
+		dt := value - parsed
+		return dt > -delta && dt < delta
+	}
+	require.NoError(t, quick.Check(f, nil))
 }

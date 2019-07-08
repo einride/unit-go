@@ -26,16 +26,23 @@ func TestDistance_Get(t *testing.T) {
 
 func TestDistance_String(t *testing.T) {
 	for _, tt := range []struct {
-		d        Distance
-		expected string
+		d   Distance
+		str string
 	}{
-		{d: Centi * Metre, expected: "1cm"},
-		{d: Kilo * Metre, expected: "1km"},
-		{d: 2.3 * Kilo * Metre, expected: "2.3km"},
+		{d: Centi * Metre, str: "1cm"},
+		{d: Kilo * Metre, str: "1km"},
+		{d: 2.3 * Kilo * Metre, str: "2.3km"},
 	} {
 		tt := tt
-		t.Run(tt.expected, func(t *testing.T) {
-			require.Equal(t, tt.expected, tt.d.String())
+		t.Run(tt.str, func(t *testing.T) {
+			t.Run("marshal", func(t *testing.T) {
+				require.Equal(t, tt.str, tt.d.String())
+			})
+			t.Run("unmarshal", func(t *testing.T) {
+				var d Distance
+				require.NoError(t, d.UnmarshalString(tt.str))
+				require.Equal(t, tt.d, d)
+			})
 		})
 	}
 }

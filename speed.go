@@ -1,8 +1,13 @@
 package unit
 
+import "golang.org/x/xerrors"
+
 type Speed float64
 
-const metrePerSecondSymbol = "m/s"
+const (
+	metrePerSecondSymbol   = "m/s"
+	kiloMetrePerHourSymbol = "km/h"
+)
 
 const (
 	MetrePerSecond   Speed = 1.0
@@ -18,5 +23,17 @@ func (s Speed) Get(as Speed) float64 {
 }
 
 func (s Speed) String() string {
-	return formatWithPrefixAndSymbol(float64(s), metrePerSecondSymbol)
+	return format(float64(s), metrePerSecondSymbol)
+}
+
+func (s *Speed) UnmarshalString(str string) error {
+	parsed, err := parse(str, map[string]float64{
+		metrePerSecondSymbol:   float64(MetrePerSecond),
+		kiloMetrePerHourSymbol: float64(KiloMetrePerHour),
+	})
+	if err != nil {
+		return xerrors.Errorf("unmarshal speed: %w", err)
+	}
+	*s = Speed(parsed)
+	return nil
 }

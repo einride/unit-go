@@ -92,6 +92,21 @@ func TestDecodeHookFunc(t *testing.T) {
 		},
 
 		{
+			msg:    "frequency",
+			from:   reflect.TypeOf(""),
+			to:     reflect.TypeOf(Frequency(0)),
+			data:   "5Hz",
+			result: 5 * Hertz,
+		},
+		{
+			msg:  "frequency error",
+			from: reflect.TypeOf(""),
+			to:   reflect.TypeOf(Frequency(0)),
+			data: "5",
+			err:  "unmarshal frequency: parse '5': unknown unit",
+		},
+
+		{
 			msg:    "jerk",
 			from:   reflect.TypeOf(""),
 			to:     reflect.TypeOf(Jerk(0)),

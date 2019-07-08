@@ -3,8 +3,7 @@
 all: \
 	circleci-config-validate \
 	markdown-lint \
-	mod-tidy \
-	go-generate \
+	go-mod-tidy \
 	go-lint \
 	go-review \
 	go-test \
@@ -24,37 +23,25 @@ build:
 
 include build/rules.mk
 build/rules.mk: build
-	@# Included in submodule: build
+	@# included in submodule: build
 
-.PHONY: mod-tidy
-mod-tidy:
-	go mod tidy
+.PHONY: go-mod-tidy
+go-mod-tidy:
+	go mod tidy -v
 
 .PHONY: go-lint
 go-lint: $(GOLANGCI_LINT)
 	$(GOLANGCI_LINT) run --enable-all
 
-ifeq ($(CI),true)
-# prevent OOM error when CircleCI erroneously reports 32 available VCPUs
-GO_BUILD_FLAGS := -p 2
-else
-GO_BUILD_FLAGS :=
-endif
-
-# go-generate: (re-)generate Go code using go generate
-.PHONY: go-generate
-go-generate: $(STRINGER) $(WIRE)
-	go generate $(GO_BUILD_FLAGS) ./...
-
 # go-test: run Go test suite
 .PHONY: go-test
 go-test:
-	go test $(GO_BUILD_FLAGS) -count 1 -race -cover ./...
+	go test -count 1 -race -cover ./...
 
 # markdown-lint: lint Markdown files with markdownlint
 .PHONY: markdown-lint
 markdown-lint: $(MARKDOWNLINT)
-	$(MARKDOWNLINT) --ignore build --ignore vendor --ignore waysure-log-collector-sidecar .
+	$(MARKDOWNLINT) --ignore build .
 
 # docker-lint: lint Dockerfiles with Hadolint
 .PHONY: docker-lint

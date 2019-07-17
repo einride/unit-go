@@ -14,6 +14,7 @@ type AngularSpeed float64
 const (
 	RadianPerSecond AngularSpeed = 1.0
 	RPM                          = RadianPerSecond * (2 * math.Pi) / 60
+	DegreePerSecond              = RadianPerSecond * (180 / math.Pi)
 )
 
 func (a AngularSpeed) RadiansPerSecond() float64 {

@@ -8,6 +8,7 @@ import (
 
 func TestAngularSpeed_Get(t *testing.T) {
 	require.Equal(t, float64(9.549296585513721), (RadianPerSecond).Get(RPM))
+	require.Equal(t, float64(0.017453292519943295), RadianPerSecond.Get(DegreePerSecond))
 }
 
 func TestAngularSpeed_String(t *testing.T) {

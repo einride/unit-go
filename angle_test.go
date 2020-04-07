@@ -39,8 +39,8 @@ func TestAngle_WrapMinusPiPi(t *testing.T) {
 	for _, tc := range tests {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
-			tc.angle.WrapMinusPiPi()
-			require.InDelta(t, tc.want.Radians(), tc.angle.Radians(), 1e-5)
+			got := tc.angle.WrapMinusPiPi()
+			require.InDelta(t, tc.want.Radians(), got.Radians(), 1e-5)
 		})
 	}
 }

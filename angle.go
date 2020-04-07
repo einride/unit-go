@@ -1,10 +1,9 @@
 package unit
 
 import (
+	"fmt"
 	"math"
 	"strconv"
-
-	"golang.org/x/xerrors"
 )
 
 const (
@@ -37,7 +36,7 @@ func (a *Angle) UnmarshalString(str string) error {
 		degreeSymbol: float64(Degree),
 	})
 	if err != nil {
-		return xerrors.Errorf("unmarshal angle: %w", err)
+		return fmt.Errorf("unmarshal angle: %w", err)
 	}
 	*a = Angle(parsed)
 	return nil

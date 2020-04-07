@@ -1,6 +1,6 @@
 package unit
 
-import "golang.org/x/xerrors"
+import "fmt"
 
 type Jerk float64
 
@@ -25,7 +25,7 @@ func (m *Jerk) UnmarshalString(str string) error {
 		metresPerSecondCubedSymbol: float64(MetrePerSecondCubed),
 	})
 	if err != nil {
-		return xerrors.Errorf("unmarshal jerk: %w", err)
+		return fmt.Errorf("unmarshal jerk: %w", err)
 	}
 	*m = Jerk(parsed)
 	return nil

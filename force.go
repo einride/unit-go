@@ -1,6 +1,6 @@
 package unit
 
-import "golang.org/x/xerrors"
+import "fmt"
 
 type Force float64
 
@@ -25,7 +25,7 @@ func (t *Force) UnmarshalString(str string) error {
 		newtonSymbol: float64(Newton),
 	})
 	if err != nil {
-		return xerrors.Errorf("unmarshal force: %w", err)
+		return fmt.Errorf("unmarshal force: %w", err)
 	}
 	*t = Force(parsed)
 	return nil

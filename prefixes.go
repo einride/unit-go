@@ -1,11 +1,10 @@
 package unit
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 	"unicode/utf8"
-
-	"golang.org/x/xerrors"
 )
 
 // Prefixes.
@@ -82,11 +81,11 @@ func parse(str string, units map[string]float64) (float64, error) {
 		break
 	}
 	if !okUnit {
-		return 0, xerrors.Errorf("parse '%s': unknown unit", str)
+		return 0, fmt.Errorf("parse '%s': unknown unit", str)
 	}
 	rest = rest[:len(rest)-len(symbol)]
 	if len(rest) == 0 {
-		return 0, xerrors.Errorf("parse '%s': not a number", str)
+		return 0, fmt.Errorf("parse '%s': not a number", str)
 	}
 	// parse prefix, if any
 	lastRune, lastRuneSize := utf8.DecodeLastRuneInString(rest)
@@ -95,12 +94,12 @@ func parse(str string, units map[string]float64) (float64, error) {
 		rest = rest[:len(rest)-lastRuneSize]
 	}
 	if len(rest) == 0 {
-		return 0, xerrors.Errorf("parse '%s': not a number", str)
+		return 0, fmt.Errorf("parse '%s': not a number", str)
 	}
 	// parse magnitude
 	magnitude, err := strconv.ParseFloat(rest, 64)
 	if err != nil {
-		return 0, xerrors.Errorf("parse '%s': %w", str, err)
+		return 0, fmt.Errorf("parse '%s': %w", str, err)
 	}
 	return magnitude * prefix * unit, nil
 }

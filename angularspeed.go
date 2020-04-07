@@ -1,10 +1,9 @@
 package unit
 
 import (
+	"fmt"
 	"math"
 	"strconv"
-
-	"golang.org/x/xerrors"
 )
 
 const radianPerSecondSymbol = "rad/s"
@@ -34,7 +33,7 @@ func (a *AngularSpeed) UnmarshalString(str string) error {
 		radianPerSecondSymbol: float64(RadianPerSecond),
 	})
 	if err != nil {
-		return xerrors.Errorf("unmarshal angular speed: %w", err)
+		return fmt.Errorf("unmarshal angular speed: %w", err)
 	}
 	*a = AngularSpeed(parsed)
 	return nil

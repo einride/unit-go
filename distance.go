@@ -1,6 +1,8 @@
 package unit
 
-import "golang.org/x/xerrors"
+import (
+	"fmt"
+)
 
 type Distance float64
 
@@ -28,7 +30,7 @@ func (d *Distance) UnmarshalString(str string) error {
 		metreSymbol: float64(Metre),
 	})
 	if err != nil {
-		return xerrors.Errorf("unmarshal distance: %w", err)
+		return fmt.Errorf("unmarshal distance: %w", err)
 	}
 	*d = Distance(parsed)
 	return nil

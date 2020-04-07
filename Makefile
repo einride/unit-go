@@ -1,29 +1,21 @@
 # all: all tasks required for a complete build
 .PHONY: all
 all: \
-	circleci-config-validate \
 	markdown-lint \
 	go-mod-tidy \
 	go-lint \
 	go-review \
 	go-test \
-	git-verify-submodules \
 	git-verify-nodiff
 
+include tools/git-no-diff/rules.mk
+include tools/prettier/rules.mk
+include tools/gofumports/rules.mk
+include tools/goreview/rules.mk
+include tools/golangci-lint/rules.mk
+include tools/hadolint/rules.mk
+
 export GO111MODULE := on
-
-# clean: remove generated build files
-.PHONY: clean
-clean:
-	rm -rf build
-
-.PHONY: build
-build:
-	@git submodule update --init --recursive $@
-
-include build/rules.mk
-build/rules.mk: build
-	@# included in submodule: build
 
 .PHONY: go-mod-tidy
 go-mod-tidy:
@@ -32,7 +24,7 @@ go-mod-tidy:
 .PHONY: go-lint
 go-lint: $(GOLANGCI_LINT)
 	# dupl: Disabled due to duplication between units (TODO: code-generate)
-	$(GOLANGCI_LINT) run --enable-all --disable dupl
+	$(GOLANGCI_LINT) run --enable-all --disable dupl,gomnd,wsl,funlen
 
 # go-test: run Go test suite
 .PHONY: go-test
@@ -41,18 +33,13 @@ go-test:
 
 # markdown-lint: lint Markdown files with markdownlint
 .PHONY: markdown-lint
-markdown-lint: $(MARKDOWNLINT)
-	$(MARKDOWNLINT) --ignore build .
+markdown-lint: $(PRETTIER)
+	$(PRETTIER) --parser markdown --check *.md
 
 # docker-lint: lint Dockerfiles with Hadolint
 .PHONY: docker-lint
 docker-lint: $(HADOLINT)
 	git ls-files --exclude='Dockerfile*' --ignored | xargs -L 1 $(HADOLINT)
-
-# circleci-config-validate: validate the CircleCI build config
-.PHONY: circleci-config-validate
-circleci-config-validate: $(CIRCLECI)
-	$(CIRCLECI) config validate
 
 # go-review: review Go code with goreview
 .PHONY: go-review

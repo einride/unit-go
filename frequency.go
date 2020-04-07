@@ -1,6 +1,6 @@
 package unit
 
-import "golang.org/x/xerrors"
+import "fmt"
 
 type Frequency float64
 
@@ -25,7 +25,7 @@ func (f *Frequency) UnmarshalString(str string) error {
 		hertzSymbol: float64(Hertz),
 	})
 	if err != nil {
-		return xerrors.Errorf("unmarshal frequency: %w", err)
+		return fmt.Errorf("unmarshal frequency: %w", err)
 	}
 	*f = Frequency(parsed)
 	return nil

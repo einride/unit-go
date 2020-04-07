@@ -1,6 +1,6 @@
 package unit
 
-import "golang.org/x/xerrors"
+import "fmt"
 
 type Mass float64
 
@@ -37,7 +37,7 @@ func (m *Mass) UnmarshalString(str string) error {
 		tonneSymbol: float64(Tonne),
 	})
 	if err != nil {
-		return xerrors.Errorf("unmarshal mass: %w", err)
+		return fmt.Errorf("unmarshal mass: %w", err)
 	}
 	*m = Mass(parsed)
 	return nil

@@ -1,6 +1,8 @@
 package unit
 
-import "golang.org/x/xerrors"
+import (
+	"fmt"
+)
 
 type Speed float64
 
@@ -32,7 +34,7 @@ func (s *Speed) UnmarshalString(str string) error {
 		kiloMetrePerHourSymbol: float64(KiloMetrePerHour),
 	})
 	if err != nil {
-		return xerrors.Errorf("unmarshal speed: %w", err)
+		return fmt.Errorf("unmarshal speed: %w", err)
 	}
 	*s = Speed(parsed)
 	return nil

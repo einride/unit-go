@@ -1,6 +1,8 @@
 package unit
 
-import "golang.org/x/xerrors"
+import (
+	"fmt"
+)
 
 type Torque float64
 
@@ -25,7 +27,7 @@ func (t *Torque) UnmarshalString(str string) error {
 		newtonMetreSymbol: float64(NewtonMetre),
 	})
 	if err != nil {
-		return xerrors.Errorf("unmarshal torque: %w", err)
+		return fmt.Errorf("unmarshal torque: %w", err)
 	}
 	*t = Torque(parsed)
 	return nil

@@ -1,17 +1,18 @@
 package unit
 
 import (
+	"math"
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"gotest.tools/v3/assert"
 )
 
 func TestSpeed_Kph(t *testing.T) {
-	require.InDelta(t, 3.6, MetrePerSecond.Get(KiloMetrePerHour), 0.0000000000001)
+	assert.Assert(t, math.Abs(3.6-MetrePerSecond.Get(KiloMetrePerHour)) < 1e-9)
 }
 
 func TestSpeed_UnitConversionMPSxKPH(t *testing.T) {
-	require.Equal(t, float64(MetrePerSecond), MetrePerSecond.Get(KiloMetrePerHour)*float64(KiloMetrePerHour))
+	assert.Equal(t, float64(MetrePerSecond), MetrePerSecond.Get(KiloMetrePerHour)*float64(KiloMetrePerHour))
 }
 
 func TestSpeed_String(t *testing.T) {
@@ -26,12 +27,12 @@ func TestSpeed_String(t *testing.T) {
 		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
-				require.Equal(t, tt.str, tt.s.String())
+				assert.Equal(t, tt.str, tt.s.String())
 			})
 			t.Run("unmarshal", func(t *testing.T) {
 				var s Speed
-				require.NoError(t, s.UnmarshalString(tt.str))
-				require.Equal(t, tt.s, s)
+				assert.NilError(t, s.UnmarshalString(tt.str))
+				assert.Equal(t, tt.s, s)
 			})
 		})
 	}

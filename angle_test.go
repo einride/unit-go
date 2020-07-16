@@ -4,19 +4,19 @@ import (
 	"math"
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"gotest.tools/v3/assert"
 )
 
 func TestAngle_FromDegrees(t *testing.T) {
-	require.Equal(t, math.Pi*Radian, 180*Degree)
+	assert.Equal(t, math.Pi*Radian, 180*Degree)
 }
 
 func TestAngle_ToDegrees(t *testing.T) {
-	require.Equal(t, 180.0, (Radian * math.Pi).Get(Degree))
+	assert.Equal(t, 180.0, (Radian * math.Pi).Get(Degree))
 }
 
 func TestAngle_String(t *testing.T) {
-	require.Equal(t, "360°", (2 * math.Pi * Radian).String())
+	assert.Equal(t, "360°", (2 * math.Pi * Radian).String())
 }
 
 func TestAngle_WrapMinusPiPi(t *testing.T) {
@@ -40,7 +40,7 @@ func TestAngle_WrapMinusPiPi(t *testing.T) {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			got := tc.angle.WrapMinusPiPi()
-			require.InDelta(t, tc.want.Radians(), got.Radians(), 1e-5)
+			assert.Assert(t, math.Abs(tc.want.Radians()-got.Radians()) < 1e-5)
 		})
 	}
 }

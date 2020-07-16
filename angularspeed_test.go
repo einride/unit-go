@@ -3,12 +3,12 @@ package unit
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"gotest.tools/v3/assert"
 )
 
 func TestAngularSpeed_Get(t *testing.T) {
-	require.Equal(t, float64(9.549296585513721), (RadianPerSecond).Get(RPM))
-	require.Equal(t, float64(0.017453292519943295), RadianPerSecond.Get(DegreePerSecond))
+	assert.Equal(t, float64(9.549296585513721), (RadianPerSecond).Get(RPM))
+	assert.Equal(t, float64(0.017453292519943295), RadianPerSecond.Get(DegreePerSecond))
 }
 
 func TestAngularSpeed_String(t *testing.T) {
@@ -23,12 +23,12 @@ func TestAngularSpeed_String(t *testing.T) {
 		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
-				require.Equal(t, tt.str, tt.a.String())
+				assert.Equal(t, tt.str, tt.a.String())
 			})
 			t.Run("unmarshal", func(t *testing.T) {
 				var s AngularSpeed
-				require.NoError(t, s.UnmarshalString(tt.str))
-				require.Equal(t, tt.a, s)
+				assert.NilError(t, s.UnmarshalString(tt.str))
+				assert.Equal(t, tt.a, s)
 			})
 		})
 	}

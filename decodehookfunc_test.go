@@ -4,7 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"gotest.tools/v3/assert"
+	is "gotest.tools/v3/assert/cmp"
 )
 
 func TestDecodeHookFunc(t *testing.T) {
@@ -183,12 +184,12 @@ func TestDecodeHookFunc(t *testing.T) {
 	} {
 		actual, err := DecodeHookFunc(tt.from, tt.to, tt.data)
 		if tt.err != "" {
-			require.Nil(t, actual)
-			require.NotNil(t, err)
-			require.Equal(t, tt.err, err.Error())
+			assert.Assert(t, is.Nil(actual))
+			assert.Assert(t, err != nil)
+			assert.Equal(t, tt.err, err.Error())
 		} else {
-			require.NoError(t, err)
-			require.Equal(t, tt.result, actual)
+			assert.NilError(t, err)
+			assert.DeepEqual(t, tt.result, actual)
 		}
 	}
 }

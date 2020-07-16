@@ -3,7 +3,7 @@ package unit
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"gotest.tools/v3/assert"
 )
 
 func TestFrequency_String(t *testing.T) {
@@ -18,12 +18,12 @@ func TestFrequency_String(t *testing.T) {
 		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
-				require.Equal(t, tt.str, tt.f.String())
+				assert.Equal(t, tt.str, tt.f.String())
 			})
 			t.Run("unmarshal", func(t *testing.T) {
 				var s Frequency
-				require.NoError(t, s.UnmarshalString(tt.str))
-				require.Equal(t, tt.f, s)
+				assert.NilError(t, s.UnmarshalString(tt.str))
+				assert.Equal(t, tt.f, s)
 			})
 		})
 	}

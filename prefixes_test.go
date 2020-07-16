@@ -1,10 +1,11 @@
 package unit
 
 import (
+	"math"
 	"testing"
 	"testing/quick"
 
-	"github.com/stretchr/testify/require"
+	"gotest.tools/v3/assert"
 )
 
 func TestFormatParse(t *testing.T) {
@@ -33,12 +34,12 @@ func TestFormatParse(t *testing.T) {
 		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("format", func(t *testing.T) {
-				require.Equal(t, tt.str, format(tt.value, tt.symbol))
+				assert.Equal(t, tt.str, format(tt.value, tt.symbol))
 			})
 			t.Run("parse", func(t *testing.T) {
 				parsed, err := parse(tt.str, map[string]float64{tt.symbol: 1})
-				require.NoError(t, err)
-				require.InDelta(t, tt.value, parsed, 1e-9)
+				assert.NilError(t, err)
+				assert.Assert(t, math.Abs(tt.value-parsed) < 1e-9)
 			})
 		})
 	}
@@ -62,9 +63,9 @@ func TestFormat_Errors(t *testing.T) {
 		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			parsed, err := parse(tt.str, tt.units)
-			require.Equal(t, float64(0), parsed)
-			require.NotNil(t, err)
-			require.Equal(t, tt.err, err.Error())
+			assert.Equal(t, float64(0), parsed)
+			assert.Assert(t, err != nil)
+			assert.Equal(t, tt.err, err.Error())
 		})
 	}
 }
@@ -80,9 +81,9 @@ func TestProperty_ParseFormat(t *testing.T) {
 		}
 		formatted := format(value, "m")
 		parsed, err := parse(formatted, map[string]float64{"m": 1})
-		require.NoError(t, err)
+		assert.NilError(t, err)
 		dt := value - parsed
 		return dt > -delta && dt < delta
 	}
-	require.NoError(t, quick.Check(f, nil))
+	assert.NilError(t, quick.Check(f, nil))
 }

@@ -3,7 +3,7 @@ package unit
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"gotest.tools/v3/assert"
 )
 
 func TestDistance_Get(t *testing.T) {
@@ -19,7 +19,7 @@ func TestDistance_Get(t *testing.T) {
 	} {
 		tt := tt
 		t.Run(tt.msg, func(t *testing.T) {
-			require.Equal(t, tt.expected, tt.d.Get(tt.as))
+			assert.Equal(t, tt.expected, tt.d.Get(tt.as))
 		})
 	}
 }
@@ -36,12 +36,12 @@ func TestDistance_String(t *testing.T) {
 		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
-				require.Equal(t, tt.str, tt.d.String())
+				assert.Equal(t, tt.str, tt.d.String())
 			})
 			t.Run("unmarshal", func(t *testing.T) {
 				var d Distance
-				require.NoError(t, d.UnmarshalString(tt.str))
-				require.Equal(t, tt.d, d)
+				assert.NilError(t, d.UnmarshalString(tt.str))
+				assert.Equal(t, tt.d, d)
 			})
 		})
 	}

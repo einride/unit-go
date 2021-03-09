@@ -8,21 +8,21 @@ import (
 )
 
 func TestAngle_FromDegrees(t *testing.T) {
-	assert.Equal(t, math.Pi*Radian, 180*Degree)
+	assert.Equal(t, Radians(math.Pi), Degree(180).AsRadians())
 }
 
 func TestAngle_ToDegrees(t *testing.T) {
-	assert.Equal(t, 180.0, (Radian * math.Pi).Get(Degree))
+	assert.Equal(t, Degree(180.0), (Radians(math.Pi)).AsDegree())
 }
 
 func TestAngle_String(t *testing.T) {
-	assert.Equal(t, "360°", (2 * math.Pi * Radian).String())
+	assert.Equal(t, "360°", (Radians(2 * math.Pi)).String())
 }
 
 func TestAngle_WrapMinusPiPi(t *testing.T) {
 	type test struct {
 		name        string
-		angle, want Angle
+		angle, want Radians
 	}
 	tests := []test{
 		{angle: 1.0, want: 1.0, name: "within positive"},

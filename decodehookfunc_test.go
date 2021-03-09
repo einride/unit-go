@@ -35,14 +35,14 @@ func TestDecodeHookFunc(t *testing.T) {
 		{
 			msg:    "angle",
 			from:   reflect.TypeOf(""),
-			to:     reflect.TypeOf(Angle(0)),
+			to:     reflect.TypeOf(Radians(0)),
 			data:   "5°",
-			result: 5 * Degree,
+			result: Degree(5).AsRadians(),
 		},
 		{
 			msg:  "angle error",
 			from: reflect.TypeOf(""),
-			to:   reflect.TypeOf(Angle(0)),
+			to:   reflect.TypeOf(Degree(0)),
 			data: "5",
 			err:  "unmarshal angle: parse '5': unknown unit",
 		},

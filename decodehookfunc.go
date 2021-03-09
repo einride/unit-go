@@ -14,12 +14,18 @@ func DecodeHookFunc(from reflect.Type, to reflect.Type, data interface{}) (inter
 			return nil, err
 		}
 		return a, nil
-	case reflect.TypeOf(Angle(0)):
-		var a Angle
-		if err := a.UnmarshalString(data.(string)); err != nil {
+	case reflect.TypeOf(Radians(0)):
+		var r Radians
+		if err := r.UnmarshalString(data.(string)); err != nil {
 			return nil, err
 		}
-		return a, nil
+		return r, nil
+	case reflect.TypeOf(Degree(0)):
+		var d Degree
+		if err := d.UnmarshalString(data.(string)); err != nil {
+			return nil, err
+		}
+		return d, nil
 	case reflect.TypeOf(AngularSpeed(0)):
 		var a AngularSpeed
 		if err := a.UnmarshalString(data.(string)); err != nil {

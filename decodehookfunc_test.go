@@ -140,14 +140,14 @@ func TestDecodeHookFunc(t *testing.T) {
 		{
 			msg:    "speed",
 			from:   reflect.TypeOf(""),
-			to:     reflect.TypeOf(Speed(0)),
+			to:     reflect.TypeOf(MeterPerSecond(0)),
 			data:   "5m/s",
-			result: 5 * MetrePerSecond,
+			result: MeterPerSecond(5),
 		},
 		{
 			msg:  "speed error",
 			from: reflect.TypeOf(""),
-			to:   reflect.TypeOf(Speed(0)),
+			to:   reflect.TypeOf(MeterPerSecond(0)),
 			data: "5",
 			err:  "unmarshal speed: parse '5': unknown unit",
 		},

@@ -62,12 +62,18 @@ func DecodeHookFunc(from reflect.Type, to reflect.Type, data interface{}) (inter
 			return nil, err
 		}
 		return m, nil
-	case reflect.TypeOf(Speed(0)):
-		var s Speed
-		if err := s.UnmarshalString(data.(string)); err != nil {
+	case reflect.TypeOf(MeterPerSecond(0)):
+		var m MeterPerSecond
+		if err := m.UnmarshalString(data.(string)); err != nil {
 			return nil, err
 		}
-		return s, nil
+		return m, nil
+	case reflect.TypeOf(KilometerPerHour(0)):
+		var k KilometerPerHour
+		if err := k.UnmarshalString(data.(string)); err != nil {
+			return nil, err
+		}
+		return k, nil
 	case reflect.TypeOf(Torque(0)):
 		var t Torque
 		if err := t.UnmarshalString(data.(string)); err != nil {

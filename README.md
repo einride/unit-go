@@ -1,4 +1,9 @@
-# Einride common units
+# Unit Go
 
-This library contains base units of Einride ex. Speed, Velocity and conversion
-in between them.
+Go SDK for modeling physical units and conversion between them.
+
+## Installation
+
+```
+go get go.einride.tech/unit
+```

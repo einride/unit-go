@@ -3,6 +3,7 @@ package unit
 import "reflect"
 
 // DecodeHookFunc implements the github.com/mitchellh/mapstructure DecodeHookFunc interface.
+// nolint: cyclop
 func DecodeHookFunc(from reflect.Type, to reflect.Type, data interface{}) (interface{}, error) {
 	if from.Kind() != reflect.String {
 		return data, nil

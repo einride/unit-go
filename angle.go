@@ -42,7 +42,7 @@ func (a *Angle) UnmarshalString(str string) error {
 	return nil
 }
 
-// WrapMinusPiPi wraps the current angle in the interval [-pi, pi]
+// WrapMinusPiPi wraps the current angle in the interval [-pi, pi].
 func (a *Angle) WrapMinusPiPi() Angle {
 	b := math.Mod(a.Radians()+math.Pi, 2*math.Pi)
 	if b < 0 {

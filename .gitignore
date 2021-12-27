@@ -1,5 +1,4 @@
 .idea
-*.iml
 *.DS_Store
-vendor
-/tools/**/bin
+.tools/
+.mage/gen

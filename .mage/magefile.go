@@ -7,6 +7,12 @@ import (
 	"github.com/magefile/mage/mg"
 
 	// mage:import
+	"go.einride.tech/mage-tools/targets/mgcocogitto"
+
+	// mage:import
+	"go.einride.tech/mage-tools/targets/mgmarkdownfmt"
+
+	// mage:import
 	"go.einride.tech/mage-tools/targets/mggolangcilint"
 
 	// mage:import
@@ -16,18 +22,16 @@ import (
 	"go.einride.tech/mage-tools/targets/mggo"
 
 	// mage:import
-	"go.einride.tech/mage-tools/targets/mgcommitlint"
-
-	// mage:import
 	"go.einride.tech/mage-tools/targets/mggitverifynodiff"
 )
 
 func All() {
 	mg.Deps(
-		mg.F(mgcommitlint.Commitlint, "master"),
-		mggo.GoTest,
+		mgcocogitto.CogCheck,
 		mggolangcilint.GolangciLint,
 		mggoreview.Goreview,
+		mgmarkdownfmt.FormatMarkdown,
+		mggo.GoTest,
 	)
 	mg.SerialDeps(
 		mggo.GoModTidy,

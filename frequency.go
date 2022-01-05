@@ -36,3 +36,8 @@ func (f *Frequency) UnmarshalString(s string) error {
 	*f = Frequency(parsed)
 	return nil
 }
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (f *Frequency) UnmarshalText(text []byte) error {
+	return f.UnmarshalString(string(text))
+}

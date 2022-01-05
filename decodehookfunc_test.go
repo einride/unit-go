@@ -22,7 +22,7 @@ func TestDecodeHookFunc(t *testing.T) {
 			from:   reflect.TypeOf(""),
 			to:     reflect.TypeOf(Acceleration(0)),
 			data:   "5m/s²",
-			result: 5 * MetrePerSecondSquared,
+			result: 5 * MeterPerSecondSquared,
 		},
 		{
 			msg:  "acceleration error",
@@ -67,7 +67,7 @@ func TestDecodeHookFunc(t *testing.T) {
 			from:   reflect.TypeOf(""),
 			to:     reflect.TypeOf(Distance(0)),
 			data:   "5m",
-			result: 5 * Metre,
+			result: 5 * Meter,
 		},
 		{
 			msg:  "distance error",
@@ -112,7 +112,7 @@ func TestDecodeHookFunc(t *testing.T) {
 			from:   reflect.TypeOf(""),
 			to:     reflect.TypeOf(Jerk(0)),
 			data:   "5m/s³",
-			result: 5 * MetrePerSecondCubed,
+			result: 5 * MeterPerSecondCubed,
 		},
 		{
 			msg:  "jerk error",
@@ -142,7 +142,7 @@ func TestDecodeHookFunc(t *testing.T) {
 			from:   reflect.TypeOf(""),
 			to:     reflect.TypeOf(Speed(0)),
 			data:   "5m/s",
-			result: 5 * MetrePerSecond,
+			result: 5 * MeterPerSecond,
 		},
 		{
 			msg:  "speed error",
@@ -157,7 +157,7 @@ func TestDecodeHookFunc(t *testing.T) {
 			from:   reflect.TypeOf(""),
 			to:     reflect.TypeOf(Torque(0)),
 			data:   "5Nm",
-			result: 5 * NewtonMetre,
+			result: 5 * NewtonMeter,
 		},
 		{
 			msg:  "torque error",

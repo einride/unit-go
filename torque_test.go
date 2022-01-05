@@ -12,8 +12,8 @@ func TestTorque_String(t *testing.T) {
 		str string
 	}{
 		{t: 0, str: "0Nm"},
-		{t: 2.3 * Kilo * NewtonMetre, str: "2.3kNm"},
-		{t: 3 * Milli * NewtonMetre, str: "3mNm"},
+		{t: 2.3 * Kilo * NewtonMeter, str: "2.3kNm"},
+		{t: 3 * Milli * NewtonMeter, str: "3mNm"},
 	} {
 		tt := tt
 		t.Run(tt.str, func(t *testing.T) {

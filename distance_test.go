@@ -13,9 +13,9 @@ func TestDistance_Get(t *testing.T) {
 		as       Distance
 		expected float64
 	}{
-		{msg: "km as mile", d: Kilo * Metre, as: Mile, expected: 0.621371192},
-		{msg: "mile as km", d: Mile, as: Kilo * Metre, expected: 1.609344000614692},
-		{msg: "km as m", d: Kilo * Metre, as: Metre, expected: 1000},
+		{msg: "km as mile", d: Kilo * Meter, as: Mile, expected: 0.621371192},
+		{msg: "mile as km", d: Mile, as: Kilo * Meter, expected: 1.609344000614692},
+		{msg: "km as m", d: Kilo * Meter, as: Meter, expected: 1000},
 	} {
 		tt := tt
 		t.Run(tt.msg, func(t *testing.T) {
@@ -29,9 +29,9 @@ func TestDistance_String(t *testing.T) {
 		d   Distance
 		str string
 	}{
-		{d: Centi * Metre, str: "1cm"},
-		{d: Kilo * Metre, str: "1km"},
-		{d: 2.3 * Kilo * Metre, str: "2.3km"},
+		{d: Centi * Meter, str: "1cm"},
+		{d: Kilo * Meter, str: "1km"},
+		{d: 2.3 * Kilo * Meter, str: "2.3km"},
 	} {
 		tt := tt
 		t.Run(tt.str, func(t *testing.T) {

@@ -7,7 +7,7 @@ import (
 	"unicode/utf8"
 )
 
-// Prefixes.
+// SI prefixes.
 const (
 	Kilo  = 1e3  // k
 	Centi = 1e-2 // c

@@ -2,39 +2,45 @@ package unit
 
 import "fmt"
 
+// Mass is the quantity of matter in a physical body.
 type Mass float64
 
-const (
-	gramSymbol  = "g"
-	tonneSymbol = "t"
-)
+// Kilogram is the SI unit for measuring Mass.
+const Kilogram = Kilo * Gram
 
-const (
-	Gram     Mass = 1.0
-	KiloGram      = Kilo * Gram
-	Tonne         = 1e6 * Gram
-)
+const kilogramSymbol = "kg"
 
-func (m Mass) Grams() float64 {
-	return float64(m)
+// Gram is one thousandth of the SI unit for measuring mass, the Kilogram.
+const Gram Mass = 1.0
+
+const gramSymbol = "g"
+
+// Tonne is a thousand of the SI unit for measuring mass, the Kilogram.
+const Tonne = 1e6 * Gram
+
+const tonneSymbol = "t"
+
+// Kilograms returns m with the unit of kg.
+func (m Mass) Kilograms() float64 {
+	return m.Get(Kilogram)
 }
 
-func (m Mass) KiloGrams() float64 {
-	return m.Get(Kilo * Gram)
-}
-
+// Get returns m with the unit of as.
 func (m Mass) Get(as Mass) float64 {
 	return float64(m) / float64(as)
 }
 
+// String implements fmt.Stringer.
 func (m Mass) String() string {
 	return format(float64(m), gramSymbol)
 }
 
-func (m *Mass) UnmarshalString(str string) error {
-	parsed, err := parse(str, map[string]float64{
-		gramSymbol:  float64(Gram),
-		tonneSymbol: float64(Tonne),
+// UnmarshalString sets *m from s.
+func (m *Mass) UnmarshalString(s string) error {
+	parsed, err := parse(s, map[string]float64{
+		gramSymbol:     float64(Gram),
+		kilogramSymbol: float64(Kilogram),
+		tonneSymbol:    float64(Tonne),
 	})
 	if err != nil {
 		return fmt.Errorf("unmarshal mass: %w", err)

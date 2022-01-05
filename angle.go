@@ -6,32 +6,37 @@ import (
 	"strconv"
 )
 
-const (
-	radianSymbol = "rad"
-	degreeSymbol = "°"
-)
-
+// Angle is the measure of a plane angle or rotation.
 type Angle float64
 
-const (
-	Radian Angle = 1.0
-	Degree       = Radian / 180 * math.Pi
-)
+// Radian is the SI unit for measuring an Angle.
+const Radian Angle = 1.0
 
+const radianSymbol = "rad"
+
+// Degree is a measurement of a plane angle in which one full rotation is 360 degrees.
+const Degree = Radian / 180 * math.Pi
+
+const degreeSymbol = "°"
+
+// Radians returns the angle with the unit of radians.
 func (a Angle) Radians() float64 {
 	return float64(a)
 }
 
+// Get returns a with the unit of as.
 func (a Angle) Get(as Angle) float64 {
 	return float64(a) / float64(as)
 }
 
+// String implements fmt.Stringer.
 func (a Angle) String() string {
 	return strconv.FormatFloat(a.Get(Degree), 'f', -1, 64) + degreeSymbol
 }
 
-func (a *Angle) UnmarshalString(str string) error {
-	parsed, err := parse(str, map[string]float64{
+// UnmarshalString sets *a from s.
+func (a *Angle) UnmarshalString(s string) error {
+	parsed, err := parse(s, map[string]float64{
 		radianSymbol: float64(Radian),
 		degreeSymbol: float64(Degree),
 	})

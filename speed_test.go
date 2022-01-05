@@ -8,11 +8,11 @@ import (
 )
 
 func TestSpeed_Kph(t *testing.T) {
-	assert.Assert(t, math.Abs(3.6-MeterPerSecond.Get(KiloMeterPerHour)) < 1e-9)
+	assert.Assert(t, math.Abs(3.6-MeterPerSecond.Get(KilometerPerHour)) < 1e-9)
 }
 
 func TestSpeed_UnitConversionMPSxKPH(t *testing.T) {
-	assert.Equal(t, float64(MeterPerSecond), MeterPerSecond.Get(KiloMeterPerHour)*float64(KiloMeterPerHour))
+	assert.Equal(t, float64(MeterPerSecond), MeterPerSecond.Get(KilometerPerHour)*float64(KilometerPerHour))
 }
 
 func TestSpeed_String(t *testing.T) {

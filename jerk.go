@@ -2,31 +2,37 @@ package unit
 
 import "fmt"
 
+// Jerk is the rate at which an object's acceleration changes with respect to time.
 type Jerk float64
+
+// MeterPerSecondCubed is the SI unit for measuring Jerk.
+const MeterPerSecondCubed Jerk = 1.0
 
 const metersPerSecondCubedSymbol = "m/s³"
 
-const MeterPerSecondCubed Jerk = 1.0
-
-func (m Jerk) MetersPerSecondCubed() float64 {
-	return float64(m)
+// MetersPerSecondCubed returns j with the unit of m/s³.
+func (j Jerk) MetersPerSecondCubed() float64 {
+	return float64(j)
 }
 
-func (m Jerk) Get(as Jerk) float64 {
-	return float64(m) / float64(as)
+// Get returns j with the unit of as.
+func (j Jerk) Get(as Jerk) float64 {
+	return float64(j) / float64(as)
 }
 
-func (m Jerk) String() string {
-	return format(float64(m), metersPerSecondCubedSymbol)
+// String implements fmt.Stringer.
+func (j Jerk) String() string {
+	return format(float64(j), metersPerSecondCubedSymbol)
 }
 
-func (m *Jerk) UnmarshalString(str string) error {
-	parsed, err := parse(str, map[string]float64{
+// UnmarshalString sets *j from s.
+func (j *Jerk) UnmarshalString(s string) error {
+	parsed, err := parse(s, map[string]float64{
 		metersPerSecondCubedSymbol: float64(MeterPerSecondCubed),
 	})
 	if err != nil {
 		return fmt.Errorf("unmarshal jerk: %w", err)
 	}
-	*m = Jerk(parsed)
+	*j = Jerk(parsed)
 	return nil
 }

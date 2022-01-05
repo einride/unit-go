@@ -6,11 +6,11 @@ import (
 
 type Torque float64
 
-const newtonMetreSymbol = "Nm"
+const newtonMeterSymbol = "Nm"
 
-const NewtonMetre Torque = 1.0
+const NewtonMeter Torque = 1.0
 
-func (t Torque) NewtonMetres() float64 {
+func (t Torque) NewtonMeters() float64 {
 	return float64(t)
 }
 
@@ -19,12 +19,12 @@ func (t Torque) Get(as Torque) float64 {
 }
 
 func (t Torque) String() string {
-	return format(float64(t), newtonMetreSymbol)
+	return format(float64(t), newtonMeterSymbol)
 }
 
 func (t *Torque) UnmarshalString(str string) error {
 	parsed, err := parse(str, map[string]float64{
-		newtonMetreSymbol: float64(NewtonMetre),
+		newtonMeterSymbol: float64(NewtonMeter),
 	})
 	if err != nil {
 		return fmt.Errorf("unmarshal torque: %w", err)

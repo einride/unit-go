@@ -16,8 +16,8 @@ func TestJerk_String(t *testing.T) {
 		str string
 	}{
 		{j: 0, str: "0m/s³"},
-		{j: 2.3 * Kilo * MetrePerSecondCubed, str: "2.3km/s³"},
-		{j: 3 * Milli * MetrePerSecondCubed, str: "3mm/s³"},
+		{j: 2.3 * Kilo * MeterPerSecondCubed, str: "2.3km/s³"},
+		{j: 3 * Milli * MeterPerSecondCubed, str: "3mm/s³"},
 	} {
 		tt := tt
 		t.Run(tt.str, func(t *testing.T) {

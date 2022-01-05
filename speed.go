@@ -7,16 +7,16 @@ import (
 type Speed float64
 
 const (
-	metrePerSecondSymbol   = "m/s"
-	kiloMetrePerHourSymbol = "km/h"
+	meterPerSecondSymbol   = "m/s"
+	kiloMeterPerHourSymbol = "km/h"
 )
 
 const (
-	MetrePerSecond   Speed = 1.0
-	KiloMetrePerHour       = MetrePerSecond / 3.6
+	MeterPerSecond   Speed = 1.0
+	KiloMeterPerHour       = MeterPerSecond / 3.6
 )
 
-func (s Speed) MetresPerSecond() float64 {
+func (s Speed) MetersPerSecond() float64 {
 	return float64(s)
 }
 
@@ -25,13 +25,13 @@ func (s Speed) Get(as Speed) float64 {
 }
 
 func (s Speed) String() string {
-	return format(float64(s), metrePerSecondSymbol)
+	return format(float64(s), meterPerSecondSymbol)
 }
 
 func (s *Speed) UnmarshalString(str string) error {
 	parsed, err := parse(str, map[string]float64{
-		metrePerSecondSymbol:   float64(MetrePerSecond),
-		kiloMetrePerHourSymbol: float64(KiloMetrePerHour),
+		meterPerSecondSymbol:   float64(MeterPerSecond),
+		kiloMeterPerHourSymbol: float64(KiloMeterPerHour),
 	})
 	if err != nil {
 		return fmt.Errorf("unmarshal speed: %w", err)

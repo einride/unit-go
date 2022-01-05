@@ -2,13 +2,13 @@ package unit
 
 import "fmt"
 
-const metrePerSecondSquaredSymbol = "m/s²"
+const meterPerSecondSquaredSymbol = "m/s²"
 
 type Acceleration float64
 
-const MetrePerSecondSquared Acceleration = 1
+const MeterPerSecondSquared Acceleration = 1
 
-func (a Acceleration) MetresPerSecondSquared() float64 {
+func (a Acceleration) MetersPerSecondSquared() float64 {
 	return float64(a)
 }
 
@@ -17,12 +17,12 @@ func (a Acceleration) Get(as Acceleration) float64 {
 }
 
 func (a Acceleration) String() string {
-	return format(float64(a), metrePerSecondSquaredSymbol)
+	return format(float64(a), meterPerSecondSquaredSymbol)
 }
 
 func (a *Acceleration) UnmarshalString(str string) error {
 	parsed, err := parse(str, map[string]float64{
-		metrePerSecondSquaredSymbol: float64(MetrePerSecondSquared),
+		meterPerSecondSquaredSymbol: float64(MeterPerSecondSquared),
 	})
 	if err != nil {
 		return fmt.Errorf("unmarshal acceleration: %w", err)

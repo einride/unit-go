@@ -1,4 +1,4 @@
-module github.com/einride/unit
+module go.einride.tech/unit
 
 go 1.17
 

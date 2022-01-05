@@ -44,3 +44,8 @@ func (d *Distance) UnmarshalString(s string) error {
 	*d = Distance(parsed)
 	return nil
 }
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (d *Distance) UnmarshalText(text []byte) error {
+	return d.UnmarshalString(string(text))
+}

@@ -36,3 +36,8 @@ func (a *Acceleration) UnmarshalString(s string) error {
 	*a = Acceleration(parsed)
 	return nil
 }
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (a *Acceleration) UnmarshalText(text []byte) error {
+	return a.UnmarshalString(string(text))
+}

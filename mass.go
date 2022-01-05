@@ -48,3 +48,8 @@ func (m *Mass) UnmarshalString(s string) error {
 	*m = Mass(parsed)
 	return nil
 }
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (m *Mass) UnmarshalText(text []byte) error {
+	return m.UnmarshalString(string(text))
+}

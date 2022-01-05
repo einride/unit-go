@@ -36,3 +36,8 @@ func (j *Jerk) UnmarshalString(s string) error {
 	*j = Jerk(parsed)
 	return nil
 }
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (j *Jerk) UnmarshalText(text []byte) error {
+	return j.UnmarshalString(string(text))
+}

@@ -44,3 +44,8 @@ func (s *Speed) UnmarshalString(str string) error {
 	*s = Speed(parsed)
 	return nil
 }
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (s *Speed) UnmarshalText(text []byte) error {
+	return s.UnmarshalString(string(text))
+}

@@ -36,3 +36,8 @@ func (f *Force) UnmarshalString(s string) error {
 	*f = Force(parsed)
 	return nil
 }
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (f *Force) UnmarshalText(text []byte) error {
+	return f.UnmarshalString(string(text))
+}

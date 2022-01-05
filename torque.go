@@ -38,3 +38,8 @@ func (t *Torque) UnmarshalString(s string) error {
 	*t = Torque(parsed)
 	return nil
 }
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (t *Torque) UnmarshalText(text []byte) error {
+	return t.UnmarshalString(string(text))
+}

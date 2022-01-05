@@ -55,3 +55,8 @@ func (a *Angle) WrapMinusPiPi() Angle {
 	}
 	return Angle(b - math.Pi)
 }
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (a *Angle) UnmarshalText(text []byte) error {
+	return a.UnmarshalString(string(text))
+}

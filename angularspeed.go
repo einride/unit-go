@@ -52,3 +52,8 @@ func (a *AngularSpeed) UnmarshalString(s string) error {
 	*a = AngularSpeed(parsed)
 	return nil
 }
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (a *AngularSpeed) UnmarshalText(text []byte) error {
+	return a.UnmarshalString(string(text))
+}

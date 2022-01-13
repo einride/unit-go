@@ -1,4 +1,3 @@
 .idea
 *.DS_Store
-.tools/
-.mage/gen
+.mage/tools

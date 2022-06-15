@@ -19,6 +19,14 @@ func TestAngle_String(t *testing.T) {
 	assert.Equal(t, "360°", (2 * math.Pi * Radian).String())
 }
 
+func TestAngle_Degrees(t *testing.T) {
+	assert.Equal(t, (math.Pi * Radian).Degrees(), float64(180))
+}
+
+func TestAngle_FromRadians(t *testing.T) {
+	assert.Equal(t, FromRadians(math.Pi), math.Pi*Radian)
+}
+
 func TestAngle_WrapMinusPiPi(t *testing.T) {
 	type test struct {
 		name        string

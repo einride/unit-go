@@ -24,6 +24,16 @@ func (a Angle) Radians() float64 {
 	return float64(a)
 }
 
+// Degrees returns the angle with the unit of degrees.
+func (a Angle) Degrees() float64 {
+	return float64(a * 180 / math.Pi)
+}
+
+// Create an Angle from radians as float64.
+func FromRadians(a float64) Angle {
+	return Angle(a)
+}
+
 // Get returns a with the unit of as.
 func (a Angle) Get(as Angle) float64 {
 	return float64(a) / float64(as)

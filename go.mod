@@ -10,4 +10,5 @@ require github.com/google/go-cmp v0.5.5 // indirect
 retract (
 	v1.2.0
 	v1.0.0
+	v0.1.0
 )

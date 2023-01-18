@@ -29,9 +29,18 @@ func (a Angle) Degrees() float64 {
 	return float64(a * 180 / math.Pi)
 }
 
-// Create an Angle from radians as float64.
+// FromRadians returns an Angle from radians as float64.
 func FromRadians(a float64) Angle {
 	return Angle(a)
+}
+
+// WrapMinusPiPi wraps the current angle in the interval [-pi, pi].
+func (a Angle) WrapMinusPiPi() Angle {
+	b := math.Mod(a.Radians()+math.Pi, 2*math.Pi)
+	if b < 0 {
+		b += 2 * math.Pi
+	}
+	return Angle(b - math.Pi)
 }
 
 // Get returns a with the unit of as.
@@ -55,15 +64,6 @@ func (a *Angle) UnmarshalString(s string) error {
 	}
 	*a = Angle(parsed)
 	return nil
-}
-
-// WrapMinusPiPi wraps the current angle in the interval [-pi, pi].
-func (a *Angle) WrapMinusPiPi() Angle {
-	b := math.Mod(a.Radians()+math.Pi, 2*math.Pi)
-	if b < 0 {
-		b += 2 * math.Pi
-	}
-	return Angle(b - math.Pi)
 }
 
 // UnmarshalText implements encoding.TextUnmarshaler.

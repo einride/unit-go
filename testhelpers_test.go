@@ -23,6 +23,7 @@ func TestGetFloatingPointCmpOpts_ConvertToFromFloat32_Passes(t *testing.T) {
 		Frequency    Frequency
 		Jerk         Jerk
 		Mass         Mass
+		Sharpness    Sharpness
 		Speed        Speed
 		Torque       Torque
 	}{
@@ -36,6 +37,7 @@ func TestGetFloatingPointCmpOpts_ConvertToFromFloat32_Passes(t *testing.T) {
 		Frequency:    Frequency(float64Value),
 		Jerk:         Jerk(float64Value),
 		Mass:         Mass(float64Value),
+		Sharpness:    Sharpness(float64Value),
 		Speed:        Speed(float64Value),
 		Torque:       Torque(float64Value),
 	}
@@ -50,6 +52,7 @@ func TestGetFloatingPointCmpOpts_ConvertToFromFloat32_Passes(t *testing.T) {
 	truncated.Frequency = Frequency(float32(source.Frequency))
 	truncated.Jerk = Jerk(float32(source.Jerk))
 	truncated.Mass = Mass(float32(source.Mass))
+	truncated.Sharpness = Sharpness(float32(source.Sharpness))
 	truncated.Speed = Speed(float32(source.Speed))
 	truncated.Torque = Torque(float32(source.Torque))
 
@@ -65,6 +68,7 @@ func TestGetFloatingPointCmpOpts_ConvertToFromFloat32_Passes(t *testing.T) {
 	assert.Check(t, source.Frequency != truncated.Frequency)
 	assert.Check(t, source.Jerk != truncated.Jerk)
 	assert.Check(t, source.Mass != truncated.Mass)
+	assert.Check(t, source.Sharpness != truncated.Sharpness)
 	assert.Check(t, source.Speed != truncated.Speed)
 	assert.Check(t, source.Torque != truncated.Torque)
 	// Should deepequal with unit comparers option.

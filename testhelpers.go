@@ -55,6 +55,9 @@ func GetFloatingPointCmpOpts() []cmp.Option {
 	massComparer := cmp.Comparer(func(x, y Mass) bool {
 		return compareFloat64(x.Kilograms(), y.Kilograms())
 	})
+	sharpnessComparer := cmp.Comparer(func(x, y Sharpness) bool {
+		return compareFloat64(x.RadianPerMeter(), y.RadianPerMeter())
+	})
 	speedComparer := cmp.Comparer(func(x, y Speed) bool {
 		return compareFloat64(x.MetersPerSecond(), y.MetersPerSecond())
 	})
@@ -73,6 +76,7 @@ func GetFloatingPointCmpOpts() []cmp.Option {
 		frequencyComparer,
 		jerkComparer,
 		massComparer,
+		sharpnessComparer,
 		speedComparer,
 		torqueComparer,
 	}

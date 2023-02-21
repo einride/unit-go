@@ -1,6 +1,7 @@
 package unit
 
 import (
+	"encoding"
 	"fmt"
 	"math"
 	"strconv"
@@ -8,6 +9,8 @@ import (
 
 // AngularSpeed is a measure of rotation rate.
 type AngularSpeed float64
+
+var _ encoding.TextUnmarshaler = (*AngularSpeed)(nil)
 
 // RadianPerSecond is the SI unit for measuring AngularSpeed.
 const RadianPerSecond AngularSpeed = 1.0

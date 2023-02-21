@@ -1,9 +1,14 @@
 package unit
 
-import "fmt"
+import (
+	"encoding"
+	"fmt"
+)
 
 // Frequency is the number of occurrences of a repeating event per unit of time.
 type Frequency float64
+
+var _ encoding.TextUnmarshaler = (*Frequency)(nil)
 
 // Hertz is the SI unit for measuring Frequency.
 const Hertz Frequency = 1.0

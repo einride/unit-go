@@ -1,9 +1,14 @@
 package unit
 
-import "fmt"
+import (
+	"encoding"
+	"fmt"
+)
 
 // Force is an influence that can change the motion of an object.
 type Force float64
+
+var _ encoding.TextUnmarshaler = (*Force)(nil)
 
 const newtonSymbol = "N"
 

@@ -1,11 +1,14 @@
 package unit
 
 import (
+	"encoding"
 	"fmt"
 )
 
 // Speed is the rate of change of an object of its position with time.
 type Speed float64
+
+var _ encoding.TextUnmarshaler = (*Speed)(nil)
 
 // MeterPerSecond is the SI unit for measuring Speed.
 const MeterPerSecond Speed = 1.0

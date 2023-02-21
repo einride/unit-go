@@ -1,9 +1,14 @@
 package unit
 
-import "fmt"
+import (
+	"encoding"
+	"fmt"
+)
 
 // Jerk is the rate at which an object's acceleration changes with respect to time.
 type Jerk float64
+
+var _ encoding.TextUnmarshaler = (*Jerk)(nil)
 
 // MeterPerSecondCubed is the SI unit for measuring Jerk.
 const MeterPerSecondCubed Jerk = 1.0

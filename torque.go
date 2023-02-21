@@ -1,11 +1,14 @@
 package unit
 
 import (
+	"encoding"
 	"fmt"
 )
 
 // Torque is the rotational equivalent of linear Force.
 type Torque float64
+
+var _ encoding.TextUnmarshaler = (*Torque)(nil)
 
 // NewtonMeter is the SI unit for measuring Torque.
 const NewtonMeter Torque = 1.0

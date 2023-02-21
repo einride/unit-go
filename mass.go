@@ -1,9 +1,14 @@
 package unit
 
-import "fmt"
+import (
+	"encoding"
+	"fmt"
+)
 
 // Mass is the quantity of matter in a physical body.
 type Mass float64
+
+var _ encoding.TextUnmarshaler = (*Mass)(nil)
 
 // Kilogram is the SI unit for measuring Mass.
 const Kilogram = Kilo * Gram

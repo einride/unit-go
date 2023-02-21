@@ -1,9 +1,14 @@
 package unit
 
-import "fmt"
+import (
+	"encoding"
+	"fmt"
+)
 
 // Acceleration is the rate of change of the velocity of an object with respect to time.
 type Acceleration float64
+
+var _ encoding.TextUnmarshaler = (*Acceleration)(nil)
 
 // MeterPerSecondSquared is SI unit for measuring Acceleration.
 const MeterPerSecondSquared Acceleration = 1

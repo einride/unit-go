@@ -1,6 +1,7 @@
 package unit
 
 import (
+	"encoding"
 	"fmt"
 	"strconv"
 	"strings"
@@ -8,6 +9,8 @@ import (
 
 // Curvature is a numerical measurement of inverse physical length.
 type Curvature float64
+
+var _ encoding.TextUnmarshaler = (*Curvature)(nil)
 
 // PerMeter is the SI unit for measuring Curvature.
 const PerMeter Curvature = 1

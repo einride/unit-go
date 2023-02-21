@@ -1,11 +1,14 @@
 package unit
 
 import (
+	"encoding"
 	"fmt"
 )
 
 // Distance is a numerical measurement of physical length.
 type Distance float64
+
+var _ encoding.TextUnmarshaler = (*Distance)(nil)
 
 // Meter is the SI unit for measuring Distance.
 const Meter Distance = 1

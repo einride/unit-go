@@ -1,6 +1,7 @@
 package unit
 
 import (
+	"encoding"
 	"fmt"
 	"math"
 	"strconv"
@@ -8,6 +9,8 @@ import (
 
 // Angle is the measure of a plane angle or rotation.
 type Angle float64
+
+var _ encoding.TextUnmarshaler = (*Angle)(nil)
 
 // Radian is the SI unit for measuring an Angle.
 const Radian Angle = 1.0

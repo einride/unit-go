@@ -1,6 +1,7 @@
 package unit
 
 import (
+	"encoding"
 	"fmt"
 	"strconv"
 	"strings"
@@ -9,6 +10,8 @@ import (
 // Sharpness is a numerical measurement of angular change per physical length.
 // And example is the sharpness of a curve.
 type Sharpness float64
+
+var _ encoding.TextUnmarshaler = (*Sharpness)(nil)
 
 // RadianPerMeter is the SI unit for measuring Sharpness.
 const RadianPerMeter Sharpness = 1

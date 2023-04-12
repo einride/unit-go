@@ -41,6 +41,8 @@ func TestAngle_WrapMinusPiPi(t *testing.T) {
 		{angle: 8.0, want: 8.0 - math.Pi*2, name: "double positive"},
 		{angle: -12.0, want: -12.0 + math.Pi*4, name: "triple negative"},
 		{angle: 12.0, want: 12.0 - math.Pi*4, name: "triple positive"},
+		{angle: 1.0 - 100*math.Pi, want: 1.0, name: "huge negative"},
+		{angle: 1.0 + 100*math.Pi, want: 1.0, name: "huge positive"},
 		{angle: math.Pi, want: -math.Pi, name: "pi"},
 		{angle: -math.Pi, want: -math.Pi, name: "-pi"},
 	}

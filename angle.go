@@ -39,11 +39,35 @@ func FromRadians(a float64) Angle {
 
 // WrapMinusPiPi wraps the current angle in the interval [-pi, pi].
 func (a Angle) WrapMinusPiPi() Angle {
+	const limitForModulo = 5 * math.Pi
+
+	if math.Abs(a.Radians()) > limitForModulo {
+		return a.wrapMinusPiPiModulo()
+	}
+	return a.wrapMinusPiPiFast()
+}
+
+// wrapMinusPiPiModulo wraps the current angle in the interval [-pi, pi] using
+// modulo operations, faster for huge angle values.
+func (a Angle) wrapMinusPiPiModulo() Angle {
 	b := math.Mod(a.Radians()+math.Pi, 2*math.Pi)
 	if b < 0 {
 		b += 2 * math.Pi
 	}
 	return Angle(b - math.Pi)
+}
+
+// wrapMinusPiPiFast wraps the current angle in the interval [-pi, pi] using for
+// loops, faster for small angle values.
+func (a Angle) wrapMinusPiPiFast() Angle {
+	const twoPi = 2 * math.Pi
+	for a < -math.Pi {
+		a += twoPi
+	}
+	for a >= math.Pi {
+		a -= twoPi
+	}
+	return a
 }
 
 // Get returns a with the unit of as.

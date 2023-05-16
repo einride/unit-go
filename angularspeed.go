@@ -32,6 +32,11 @@ func (a AngularSpeed) RadiansPerSecond() float64 {
 	return float64(a)
 }
 
+// DegreesPerSecond returns a with the unit of °/s.
+func (a AngularSpeed) DegreesPerSecond() float64 {
+	return float64(a * 180 / math.Pi)
+}
+
 // Get returns a with the unit of as.
 func (a AngularSpeed) Get(as AngularSpeed) float64 {
 	return float64(a) / float64(as)

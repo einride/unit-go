@@ -1,6 +1,7 @@
 package unit
 
 import (
+	"math"
 	"testing"
 
 	"gotest.tools/v3/assert"
@@ -32,4 +33,8 @@ func TestAngularSpeed_String(t *testing.T) {
 			})
 		})
 	}
+}
+
+func TestAngularSpeed_DegreesPerSecond(t *testing.T) {
+	assert.Equal(t, (math.Pi * RadianPerSecond).DegreesPerSecond(), float64(180))
 }

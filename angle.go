@@ -33,8 +33,8 @@ func (a Angle) Degrees() float64 {
 }
 
 // FromRadians returns an Angle from radians as float64.
-func FromRadians(a float64) Angle {
-	return Angle(a)
+func FromRadians(radians float64) Angle {
+	return Angle(radians)
 }
 
 // FromDegrees returns an Angle from degrees as float64.

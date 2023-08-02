@@ -8,7 +8,7 @@ import (
 	"gotest.tools/v3/assert"
 )
 
-func TestAngle_FromDegrees(t *testing.T) {
+func TestAngle_Degree(t *testing.T) {
 	assert.Equal(t, math.Pi*Radian, 180*Degree)
 	assert.Equal(t, FromRadians(math.Pi), FromDegrees(180))
 }
@@ -27,6 +27,10 @@ func TestAngle_Degrees(t *testing.T) {
 
 func TestAngle_FromRadians(t *testing.T) {
 	assert.Equal(t, FromRadians(math.Pi), math.Pi*Radian)
+}
+
+func TestAngle_FromDegrees(t *testing.T) {
+	assert.Equal(t, FromDegrees(45), 1.0/4*math.Pi*Radian)
 }
 
 func TestAngle_WrapMinusPiPi(t *testing.T) {

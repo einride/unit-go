@@ -37,13 +37,27 @@ func FromRadians(a float64) Angle {
 	return Angle(a)
 }
 
-// WrapMinusPiPi wraps the current angle in the interval [-pi, pi].
+// FromDegrees returns an Angle from degrees as float64.
+func FromDegrees(a float64) Angle {
+	return Angle(a) * Degree
+}
+
+// WrapMinusPiPi wraps the current angle in the interval [-pi, pi[.
 func (a Angle) WrapMinusPiPi() Angle {
 	b := math.Mod(a.Radians()+math.Pi, 2*math.Pi)
 	if b < 0 {
 		b += 2 * math.Pi
 	}
 	return Angle(b - math.Pi)
+}
+
+// WrapZeroTwoPi wraps the current angle in the interval [0, 2*pi[.
+func (a Angle) WrapZeroTwoPi() Angle {
+	b := math.Mod(a.Radians(), 2*math.Pi)
+	if b < 0 {
+		b += 2 * math.Pi
+	}
+	return Angle(b)
 }
 
 // Get returns a with the unit of as.

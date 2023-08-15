@@ -4,11 +4,13 @@ import (
 	"math"
 	"testing"
 
+	"github.com/google/go-cmp/cmp"
 	"gotest.tools/v3/assert"
 )
 
 func TestAngle_FromDegrees(t *testing.T) {
 	assert.Equal(t, math.Pi*Radian, 180*Degree)
+	assert.Equal(t, FromRadians(math.Pi), FromDegrees(180))
 }
 
 func TestAngle_ToDegrees(t *testing.T) {
@@ -49,6 +51,49 @@ func TestAngle_WrapMinusPiPi(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			got := tc.angle.WrapMinusPiPi()
 			assert.Assert(t, math.Abs(tc.want.Radians()-got.Radians()) < 1e-5)
+		})
+	}
+}
+
+func TestAngle_WrapZeroTwoPi(t *testing.T) {
+	const (
+		twoPi = 2 * math.Pi
+		epsi  = 1e-5
+	)
+	type test struct {
+		name        string
+		angle, want Angle
+	}
+	tests := []test{
+		{angle: 1.0, want: 1.0, name: "within positive"},
+		{angle: 4.0, want: 4.0, name: "within  positive (large)"},
+		{angle: 8.0, want: 8.0 - twoPi, name: "double positive"},
+		{angle: 12.0, want: 12.0 - twoPi, name: "double positive (large)"},
+		{angle: 15.0, want: 15.0 - 2*twoPi, name: "triple positive"},
+		{angle: -1.0, want: -1.0 + twoPi, name: "negative change"},
+		{angle: -4.0, want: -4.0 + twoPi, name: "negative change (large)"},
+		{angle: -8.0, want: -8.0 + 2*twoPi, name: "double negative"},
+		{angle: -12.0, want: -12.0 + 2*twoPi, name: "double negative (large)"},
+		{angle: -15.0, want: -15.0 + 3*twoPi, name: "triple negative"},
+		{angle: math.Pi, want: math.Pi, name: "pi"},
+		{angle: -math.Pi, want: math.Pi, name: "-pi"},
+		{angle: twoPi, want: 0, name: "2 pi"},
+		{angle: 0, want: 0, name: "0"},
+	}
+	var d float64
+	withinEps := cmp.Comparer(func(x, y float64) bool { d = math.Abs(x - y); return d < epsi })
+	for _, tc := range tests {
+		tc := tc
+		t.Run(tc.name, func(t *testing.T) {
+			got := tc.angle.WrapZeroTwoPi()
+			w, g := tc.want.Radians(), got.Radians()
+			ok := cmp.Equal(w, g, withinEps)
+			// requirement check
+			assert.Assert(t, g < twoPi)
+			assert.Assert(t, g >= 0)
+			assert.Assert(t, math.Mod(g-tc.angle.Radians(), twoPi) < epsi)
+			// exact check
+			assert.Assert(t, ok, "got: %f, want: %f, diff: %f > %f", g, w, d, epsi)
 		})
 	}
 }

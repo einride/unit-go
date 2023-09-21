@@ -1,0 +1,11 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: unit-go
+  description: SDK for converting common units of measurements
+spec:
+  type: library
+  lifecycle: production
+  owner: team-ads-platform
+  system: units

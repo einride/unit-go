@@ -2,6 +2,7 @@ package unit
 
 import (
 	"encoding"
+	"encoding/json"
 	"fmt"
 	"math"
 	"strconv"
@@ -86,4 +87,20 @@ func (a *Angle) UnmarshalString(s string) error {
 // UnmarshalText implements encoding.TextUnmarshaler.
 func (a *Angle) UnmarshalText(text []byte) error {
 	return a.UnmarshalString(string(text))
+}
+
+// UnmarshalJSON implements JSON unmarshalling for the Angle type.
+// The type is represented as radians in JSON.
+func (a *Angle) UnmarshalJSON(data []byte) error {
+	var angle float64
+	err := json.Unmarshal(data, &angle)
+	if err != nil {
+		return err
+	}
+	*a = FromRadians(angle)
+	return nil
+}
+
+func (a *Angle) MarshalJSON() ([]byte, error) {
+	return json.Marshal(a.Radians())
 }

@@ -1,6 +1,7 @@
 package unit
 
 import (
+	"encoding/json"
 	"math"
 	"testing"
 
@@ -96,4 +97,19 @@ func TestAngle_WrapZeroTwoPi(t *testing.T) {
 			assert.Assert(t, ok, "got: %f, want: %f, diff: %f > %f", g, w, d, epsi)
 		})
 	}
+}
+
+func TestAngle_JSON(t *testing.T) {
+	jsonString := "{\"TheImportantAngle\":0.786473}"
+	type JSONStruct struct {
+		TheImportantAngle Angle
+	}
+	var jsonStruct JSONStruct
+	err := json.Unmarshal([]byte(jsonString), &jsonStruct)
+	assert.NilError(t, err)
+	assert.Equal(t, jsonStruct.TheImportantAngle.Radians(), 0.786473)
+
+	marshaled, err := json.Marshal(jsonStruct)
+	assert.NilError(t, err)
+	assert.Equal(t, string(marshaled), jsonString)
 }

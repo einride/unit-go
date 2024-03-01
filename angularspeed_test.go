@@ -8,8 +8,8 @@ import (
 )
 
 func TestAngularSpeed_Get(t *testing.T) {
-	assert.Equal(t, float64(9.549296585513721), (RadianPerSecond).Get(RPM))
-	assert.Equal(t, float64(0.017453292519943295), RadianPerSecond.Get(DegreePerSecond))
+	assert.Equal(t, float64(9.549296585513721), RadianPerSecond.Get(RPM))
+	assert.Equal(t, float64(57.29577951308232), RadianPerSecond.Get(DegreePerSecond))
 }
 
 func TestAngularSpeed_String(t *testing.T) {

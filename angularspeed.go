@@ -23,7 +23,7 @@ const RPM = RadianPerSecond * (2 * math.Pi) / 60
 const rpmSymbol = "RPM"
 
 // DegreePerSecond is angular speed measured in degrees per second.
-const DegreePerSecond = RadianPerSecond * (180 / math.Pi)
+const DegreePerSecond = RadianPerSecond / 180 * math.Pi
 
 const degreePerSecondSymbol = "°/s"
 

@@ -23,6 +23,8 @@ const Degree = Radian / 180 * math.Pi
 
 const degreeSymbol = "°"
 
+const degreeText = "deg"
+
 // Radians returns the angle with the unit of radians.
 func (a Angle) Radians() float64 {
 	return float64(a)
@@ -76,6 +78,7 @@ func (a *Angle) UnmarshalString(s string) error {
 	parsed, err := parse(s, map[string]float64{
 		radianSymbol: float64(Radian),
 		degreeSymbol: float64(Degree),
+		degreeText:   float64(Degree),
 	})
 	if err != nil {
 		return fmt.Errorf("unmarshal angle: %w", err)

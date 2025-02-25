@@ -15,7 +15,6 @@ func TestForce_String(t *testing.T) {
 		{f: 2.3 * Kilo * Newton, str: "2.3kN"},
 		{f: 3 * Milli * Newton, str: "3mN"},
 	} {
-		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
 				assert.Equal(t, tt.str, tt.f.String())

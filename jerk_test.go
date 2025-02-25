@@ -19,7 +19,6 @@ func TestJerk_String(t *testing.T) {
 		{j: 2.3 * Kilo * MeterPerSecondCubed, str: "2.3km/s³"},
 		{j: 3 * Milli * MeterPerSecondCubed, str: "3mm/s³"},
 	} {
-		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
 				assert.Equal(t, tt.str, tt.j.String())

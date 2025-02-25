@@ -17,7 +17,6 @@ func TestDistance_Get(t *testing.T) {
 		{msg: "mile as km", d: Mile, as: Kilo * Meter, expected: 1.609344000614692},
 		{msg: "km as m", d: Kilo * Meter, as: Meter, expected: 1000},
 	} {
-		tt := tt
 		t.Run(tt.msg, func(t *testing.T) {
 			assert.Equal(t, tt.expected, tt.d.Get(tt.as))
 		})
@@ -33,7 +32,6 @@ func TestDistance_String(t *testing.T) {
 		{d: Kilo * Meter, str: "1km"},
 		{d: 2.3 * Kilo * Meter, str: "2.3km"},
 	} {
-		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
 				assert.Equal(t, tt.str, tt.d.String())

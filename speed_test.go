@@ -24,7 +24,6 @@ func TestSpeed_String(t *testing.T) {
 		{s: MeterPerSecond, str: "1m/s"},
 		{s: 2.3 * Centi * MeterPerSecond, str: "2.3cm/s"},
 	} {
-		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
 				assert.Equal(t, tt.str, tt.s.String())

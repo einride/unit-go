@@ -31,7 +31,6 @@ func TestFormatParse(t *testing.T) {
 		{value: -0.000000999, symbol: "m", str: "-999nm"},
 		{value: -0.001, symbol: "m", str: "-1mm"},
 	} {
-		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("format", func(t *testing.T) {
 				assert.Equal(t, tt.str, format(tt.value, tt.symbol))
@@ -60,7 +59,6 @@ func TestFormat_Errors(t *testing.T) {
 			err:   `parse '35qm': strconv.ParseFloat: parsing "35q": invalid syntax`,
 		},
 	} {
-		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			parsed, err := parse(tt.str, tt.units)
 			assert.Equal(t, float64(0), parsed)

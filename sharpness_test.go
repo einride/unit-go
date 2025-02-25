@@ -15,7 +15,6 @@ func TestSharpness_Get(t *testing.T) {
 	}{
 		{msg: "rad/m as rad/m", d: 10 * RadianPerMeter, as: RadianPerMeter, expected: 10},
 	} {
-		tt := tt
 		t.Run(tt.msg, func(t *testing.T) {
 			assert.Equal(t, tt.expected, tt.d.Get(tt.as))
 		})
@@ -30,7 +29,6 @@ func TestSharpness_String(t *testing.T) {
 		{c: 2.3 * RadianPerMeter, str: "2.3rad/m"},
 		{c: 0.1 * RadianPerMeter, str: "0.1rad/m"},
 	} {
-		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
 				assert.Equal(t, tt.str, tt.c.String())

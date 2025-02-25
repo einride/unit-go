@@ -15,7 +15,6 @@ func TestFrequency_String(t *testing.T) {
 		{f: 2.3 * Kilo * Hertz, str: "2.3kHz"},
 		{f: 3 * Milli * Hertz, str: "3mHz"},
 	} {
-		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
 				assert.Equal(t, tt.str, tt.f.String())

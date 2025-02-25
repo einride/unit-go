@@ -48,7 +48,6 @@ func TestAngle_WrapMinusPiPi(t *testing.T) {
 		{angle: -math.Pi, want: -math.Pi, name: "-pi"},
 	}
 	for _, tc := range tests {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			got := tc.angle.WrapMinusPiPi()
 			assert.Assert(t, math.Abs(tc.want.Radians()-got.Radians()) < 1e-5)
@@ -84,7 +83,6 @@ func TestAngle_WrapZeroTwoPi(t *testing.T) {
 	var d float64
 	withinEps := cmp.Comparer(func(x, y float64) bool { d = math.Abs(x - y); return d < epsi })
 	for _, tc := range tests {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			got := tc.angle.WrapZeroTwoPi()
 			w, g := tc.want.Radians(), got.Radians()

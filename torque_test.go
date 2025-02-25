@@ -15,7 +15,6 @@ func TestTorque_String(t *testing.T) {
 		{t: 2.3 * Kilo * NewtonMeter, str: "2.3kNm"},
 		{t: 3 * Milli * NewtonMeter, str: "3mNm"},
 	} {
-		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
 				assert.Equal(t, tt.str, tt.t.String())

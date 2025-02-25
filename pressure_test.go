@@ -19,7 +19,6 @@ func TestPressure_String(t *testing.T) {
 		{p: 2.3 * Kilo * Pascal, str: "2.3kPa"},
 		{p: 3 * Milli * Pascal, str: "3mPa"},
 	} {
-		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
 				assert.Equal(t, tt.str, tt.p.String())

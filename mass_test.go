@@ -19,7 +19,6 @@ func TestMass_String(t *testing.T) {
 		{m: 2.3 * Kilo * Gram, str: "2.3kg"},
 		{m: 3 * Milli * Gram, str: "3mg"},
 	} {
-		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
 				assert.Equal(t, tt.str, tt.m.String())

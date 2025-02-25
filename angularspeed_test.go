@@ -21,7 +21,6 @@ func TestAngularSpeed_String(t *testing.T) {
 		{a: 2.3 * RadianPerSecond, str: "2.3rad/s"},
 		{a: 3 * Milli * RadianPerSecond, str: "0.003rad/s"},
 	} {
-		tt := tt
 		t.Run(tt.str, func(t *testing.T) {
 			t.Run("marshal", func(t *testing.T) {
 				assert.Equal(t, tt.str, tt.a.String())

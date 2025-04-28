@@ -16,6 +16,7 @@ func TestMass_String(t *testing.T) {
 		str string
 	}{
 		{m: 0, str: "0g"},
+		{m: 1, str: "1kg"},
 		{m: 2.3 * Kilo * Gram, str: "2.3kg"},
 		{m: 3 * Milli * Gram, str: "3mg"},
 	} {

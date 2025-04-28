@@ -16,7 +16,7 @@ const Kilogram = Kilo * Gram
 const kilogramSymbol = "kg"
 
 // Gram is one thousandth of the SI unit for measuring mass, the Kilogram.
-const Gram Mass = 1.0
+const Gram Mass = 1e-3
 
 const gramSymbol = "g"
 
